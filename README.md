@@ -1,8 +1,6 @@
-# PHP7-new-feature
+##PHP7实用新特性
 
-#PHP7实用新特性
-
-##运算符
+###运算符
 ####1、??
 PHP5
 <pre>
@@ -47,13 +45,44 @@ echo 2 ** 3, PHP_EOL;		//8
 ####4、\u{xxxx}
 <pre>
 echo "\u{6211}\u{7231}\u{4f60}";		//我爱你
+</pre>
+
+###类型声明
+####1、函数返回类型
+<pre>
+function getInt() : int {
+    return 'test';
+};
+</pre>
+
+//会报fatal
+//PHP Fatal error:  Uncaught TypeError: Return value of getInt() must be of the type integer, string returned in /tmp/a.php:5
 
 
+####2、函数入参类型
+<pre>
+function getAmount(int $num) : int {
+    return $num;
+}; 
+getAmount('test');
+</pre>
+//上边传入字符串`test`会报致命错误<br/>
+//PHP Fatal error:  Uncaught TypeError: Argument 1 passed to getAmount() must be of the type integer, string given, called in /tmp/a.php on line 7 and defined in /tmp/a.php:3
 
 
+<pre>
+declare(strict_types=1);	//严格模式下也会报错，改代码要放第一行
+getAmount('123');
+</pre>
+//这里在严格模式下传入字符串`'123'`也会报错
 
+###统一的语法变量
+<pre>
+$$foo['bar']['baz'];
+</pre>
 
-
+PHP5:$`($foo['bar']['baz'])`<br/>
+PHP7:`($$foo)`['bar']['baz']
 
 
 
