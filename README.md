@@ -4,7 +4,7 @@
 ####1、??
 PHP5
 <pre>
-$a = isset($_GET['a']) ? trim($_GET['a']) : '';
+$a = isset($_GET['a']) ? $_GET['a'] : '';
 </pre>
 
 PHP7
